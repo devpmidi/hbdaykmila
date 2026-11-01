@@ -87,12 +87,67 @@ footer{padding:25px;text-align:center;color:#777184;font-size:11px;border-top:1p
 .note p{font:italic 600 19px/1.5 'Playfair Display',serif;color:#f2d7ed;margin:0 0 18px}.note b{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--pink)}
 @media(max-width:800px){.wall{grid-template-columns:1fr;gap:26px}.letter{padding:36px 22px}.stage{padding:40px 18px}.env-wrap{margin-top:70px}}
 @media(prefers-reduced-motion:reduce){.crystal,.flame{animation:none}}
+/* ===== chess ===== */
+.chess-card{display:grid;grid-template-columns:minmax(0,560px) minmax(260px,1fr);gap:34px;align-items:start;justify-content:center;border:1px solid #ffffff1d;border-radius:28px;padding:28px;background:radial-gradient(ellipse at 50% 0%,#754a8c40,transparent 65%),#11101b}
+.board{container-type:inline-size;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));grid-template-rows:repeat(8,minmax(0,1fr));width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid #ffffff30;box-shadow:0 20px 70px #a75acb33;position:relative;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.sq{position:relative;display:grid;place-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.sq.l{background:#eadcf5}.sq.d{background:#8b5eb4}
+.sq:hover{filter:brightness(1.07)}
+.sq .pc{font-size:clamp(26px,9vw,56px);font-size:9.6cqw;line-height:1;font-family:"Segoe UI Symbol","Apple Symbols","Noto Sans Symbols 2","DejaVu Sans",sans-serif;pointer-events:none;paint-order:stroke fill;transform:translateY(-.03em)}
+.pc.w{color:#fff8fe;-webkit-text-stroke:1.4px #2a1740;text-shadow:0 2px 3px #0005}
+.pc.b{color:#1d1132;-webkit-text-stroke:1px #0b0615;text-shadow:0 1px 0 #ffffff33,0 2px 3px #0004}
+.sq.last{box-shadow:inset 0 0 0 100px #f0a6d855}
+.sq.sel{box-shadow:inset 0 0 0 4px #f0a6d8,inset 0 0 0 100px #f0a6d855}
+.sq.hnt{box-shadow:inset 0 0 0 4px #ffd27a,inset 0 0 0 100px #ffd27a33}
+.sq.l.chk{background:radial-gradient(circle,#ff5f8f 0,#ff5f8f88 45%,transparent 75%),#eadcf5}
+.sq.d.chk{background:radial-gradient(circle,#ff5f8f 0,#ff5f8f88 45%,transparent 75%),#8b5eb4}
+.sq.mv:after{content:"";width:28%;height:28%;border-radius:50%;background:#2a174066;position:absolute}
+.sq.cap:after{content:"";position:absolute;inset:5%;border-radius:50%;border:5px solid #f0a6d8cc}
+.sq i{position:absolute;font-style:normal;font-size:max(9px,1.9cqw);font-weight:700;opacity:.8;pointer-events:none}
+.sq .rk{left:4px;top:3px}.sq .fl{right:4px;bottom:2px}
+.sq.l i{color:#8b5eb4}.sq.d i{color:#eadcf5}
+.promo{position:absolute;inset:0;background:#0a0714dd;display:flex;align-items:center;justify-content:center;gap:2.5cqw;z-index:3;flex-wrap:wrap}
+.promo p{flex-basis:100%;text-align:center;margin:0 0 1cqw;font:600 4cqw 'Playfair Display',serif;color:#f2d7ed}
+.promo button{width:16cqw;height:16cqw;border-radius:16px;border:1px solid #ffffff35;background:#1a1328;cursor:pointer;display:grid;place-items:center;transition:.2s}
+.promo button:hover{border-color:#f0a6d8;transform:translateY(-3px)}
+.promo button .pc{font-size:11cqw;line-height:1;font-family:"Segoe UI Symbol","Apple Symbols","Noto Sans Symbols 2","DejaVu Sans",sans-serif}
+.cpanel{display:flex;flex-direction:column;gap:16px;min-width:0;text-align:left}
+.cstatus{font:600 clamp(22px,2.6vw,28px)/1.25 'Playfair Display',serif;color:#f2d7ed;min-height:36px}
+.crow{display:flex;flex-direction:column;gap:8px}
+.clabel{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#a79fb8}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pills button{border:1px solid #ffffff30;background:none;color:#d9d2e6;border-radius:30px;padding:9px 16px;font-size:12px;cursor:pointer;transition:.2s}
+.pills button:hover{border-color:#d99bce88}
+.pills button.on{background:linear-gradient(110deg,#f0a6d8,#a78bfa);color:#1a1023;border-color:transparent;font-weight:700}
+.cacts{display:flex;gap:8px;flex-wrap:wrap}.cacts .ghost{margin:0}.cacts .ghost:disabled{opacity:.35;cursor:default}
+.capt{min-height:30px;font-size:21px;line-height:1.2;display:flex;align-items:center;gap:1px;flex-wrap:wrap;font-family:"Segoe UI Symbol","Apple Symbols","Noto Sans Symbols 2","DejaVu Sans",sans-serif}
+.capt .w{color:#fff8fe;-webkit-text-stroke:.6px #2a1740}.capt .b{color:#2a1740;-webkit-text-stroke:.8px #cdb8e8}
+.capt small{font:600 11px 'DM Sans',sans-serif;color:var(--pink);letter-spacing:.06em;margin-left:8px}
+.capt em{font:normal 12px 'DM Sans',sans-serif;color:#8d85a0}
+.mlist{max-height:170px;overflow:auto;border:1px solid #ffffff18;border-radius:14px;padding:10px 14px;font-size:13px;line-height:1.9;color:#c9c0d8;background:#0e0c17;min-height:48px}
+.mlist b{color:#8f86a3;font-weight:500;margin-right:4px}.mlist span{margin-right:12px;display:inline-block}
+@media(max-width:900px){.chess-card{grid-template-columns:1fr;padding:16px;gap:22px}}
+/* ===== muses pinboard ===== */
+.pinboard{display:flex;flex-wrap:wrap;justify-content:center;gap:40px 28px;padding:52px 26px 40px;border-radius:28px;border:1px solid #ffffff1d;background:radial-gradient(ellipse at 50% 0%,#754a8c35,transparent 65%),repeating-linear-gradient(45deg,#ffffff05 0 2px,transparent 2px 14px),#11101b}
+.polaroid{width:clamp(160px,calc((100% - 112px)/5),215px);margin:0;background:#f6eefb;padding:12px 12px 14px;border-radius:4px;box-shadow:0 20px 50px #0008;transform:rotate(var(--r,0deg));transition:.35s;position:relative;color:#2c2040}
+.polaroid:hover{transform:rotate(0) translateY(-8px) scale(1.03);z-index:2}
+.polaroid:before{content:"";position:absolute;top:-13px;left:50%;width:72px;height:24px;margin-left:-36px;background:#f0a6d8b3;transform:rotate(var(--t,-3deg));border-radius:2px;box-shadow:0 2px 6px #0003}
+.ph{position:relative;aspect-ratio:4/5;background:linear-gradient(145deg,#d9c6ec,#b99ad6);overflow:hidden;border-radius:2px;cursor:pointer;display:grid;place-items:center;text-align:center}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+.polaroid.has .ph img{opacity:1}.polaroid.has .empty{display:none}
+.empty{padding:12px;color:#5e4278}.empty span{font-size:30px;display:block;color:#7b3f9e}.empty b{font:600 13px 'DM Sans',sans-serif}.empty small{display:block;margin-top:6px;font-size:9px;opacity:.7;word-break:break-all}
+.polaroid figcaption{font:italic 600 19px 'Playfair Display',serif;text-align:center;margin-top:12px;color:#5b2a7e}
+.polaroid .pinlink{display:block;text-align:center;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a6aa6;margin-top:5px}
+.polaroid .pinlink:hover{color:#7b3f9e}
+.chg{display:none!important;position:absolute;right:6px;top:6px;width:28px;height:28px;border-radius:50%;border:0;background:#1a1023b3;color:#f8d7f1;cursor:pointer;display:none;place-items:center;font-size:13px;z-index:2}
+.polaroid.has:hover .chg{display:none!important}
+@media(max-width:700px){.polaroid{width:calc(50% - 12px)}.pinboard{gap:34px 16px;padding:42px 14px 30px}.polaroid figcaption{font-size:16px}.polaroid.has .chg{display:none!important}}
 </style>
 </head>
 <body>
 <div class="noise"></div>
 <canvas id="fx"></canvas>
-<nav><a class="brand" href="#">K<span>✳</span>MILA</a><div class="navlinks"><a href="#sobre">About</a><a href="#momentos">Moments</a><a href="#carta">Surprises</a><a href="#edits">Her edits</a><a href="#mensagem">A message</a></div><a class="navbtn" href="#mensagem">made for you ↗</a></nav>
+<nav><a class="brand" href="#">K<span>✳</span>MILA</a><div class="navlinks"><a href="#sobre">About</a><a href="#momentos">Moments</a><a href="#carta">Surprises</a><a href="#xadrez">Chess</a><a href="#musas">Muses</a><a href="#edits">Her edits</a><a href="#mensagem">A message</a></div><a class="navbtn" href="#mensagem">made for you ↗</a></nav>
 <main>
 <section class="hero">
  <div class="hero-copy">
@@ -183,8 +238,33 @@ footer{padding:25px;text-align:center;color:#777184;font-size:11px;border-top:1p
   <button class="primary" id="pull">Pull a wish ✦</button>
  </div>
 </section>
+<section class="section reveal" id="xadrez">
+ <div class="section-head"><div><div class="kicker">08 — a royal game</div><h2>Your move,<br><em>queen.</em></h2></div><p>A full game of chess, just for you. Pick a side, choose how fierce the opponent is, and play. Tap a piece, then tap where it should go.</p></div>
+ <div class="chess-card">
+  <div class="board" id="cBoard" aria-label="Chess board"></div>
+  <aside class="cpanel">
+   <div class="cstatus" id="cStatus" aria-live="polite">Your move ✦</div>
+   <div class="crow"><span class="clabel">Opponent</span><div class="pills" id="cLevel"><button data-lv="0">Gentle</button><button data-lv="1" class="on">Clever</button><button data-lv="2">Fierce</button></div></div>
+   <div class="crow"><span class="clabel">You play</span><div class="pills" id="cSide"><button data-side="w" class="on">White</button><button data-side="b">Black</button></div></div>
+   <div class="cacts"><button class="ghost" id="cNew">New game ✦</button><button class="ghost" id="cUndo">↶ Undo</button><button class="ghost" id="cHint">Hint</button><button class="ghost" id="cFlip">Flip board</button></div>
+   <div class="crow"><span class="clabel">You captured</span><div class="capt" id="cCapMine"></div></div>
+   <div class="crow"><span class="clabel">The stars captured</span><div class="capt" id="cCapTheirs"></div></div>
+   <div class="crow"><span class="clabel">Moves</span><div class="mlist" id="cMoves"></div></div>
+  </aside>
+ </div>
+</section>
+<section class="section reveal" id="musas">
+ <div class="section-head"><div><div class="kicker">09 — her muses</div><h2>A wall of<br><em>inspiration.</em></h2></div><p>The faces and the energy that fuel her edits.</p></div>
+ <div class="pinboard" id="pinboard">
+  <figure class="polaroid" data-slug="katie-mcgrath" style="--r:-3.5deg;--t:-4deg"><div class="ph"><img alt="Katie McGrath" src="muses/katie-mcgrath.jpg"><div class="empty"><span>✦</span><b>loading photo</b><small>a little inspiration</small></div></div><button class="chg" title="Change photo" aria-label="Change photo">✎</button><figcaption>Katie McGrath</figcaption></figure>
+  <figure class="polaroid" data-slug="jessica-capshaw" style="--r:2.5deg;--t:3deg"><div class="ph"><img alt="Jessica Capshaw" src="muses/jessica-capshaw.jpg"><div class="empty"><span>✦</span><b>loading photo</b><small>a little inspiration</small></div></div><button class="chg" title="Change photo" aria-label="Change photo">✎</button><figcaption>Jessica Capshaw</figcaption></figure>
+  <figure class="polaroid" data-slug="rachel-weisz" style="--r:-1.5deg;--t:-2deg"><div class="ph"><img alt="Rachel Weisz" src="muses/rachel-weisz.jpg"><div class="empty"><span>✦</span><b>loading photo</b><small>a little inspiration</small></div></div><button class="chg" title="Change photo" aria-label="Change photo">✎</button><figcaption>Rachel Weisz</figcaption></figure>
+  <figure class="polaroid" data-slug="peggy-carter" style="--r:3.5deg;--t:4deg"><div class="ph"><img alt="Peggy Carter" src="muses/peggy-carter.jpg"><div class="empty"><span>✦</span><b>loading photo</b><small>a little inspiration</small></div></div><button class="chg" title="Change photo" aria-label="Change photo">✎</button><figcaption>Peggy Carter</figcaption></figure>
+  <figure class="polaroid" data-slug="bridget-regan" style="--r:-2.5deg;--t:-3deg"><div class="ph"><img alt="Bridget Regan" src="muses/bridget-regan.jpg"><div class="empty"><span>✦</span><b>loading photo</b><small>a little inspiration</small></div></div><button class="chg" title="Change photo" aria-label="Change photo">✎</button><figcaption>Bridget Regan</figcaption></figure>
+ </div>
+</section>
 <section class="section reveal" id="mural">
- <div class="section-head"><div><div class="kicker">08 — wall of love</div><h2>Notes from people<br>who <em>adore you.</em></h2></div><p>A few words pinned to the sky, from the people who are lucky to have you.</p></div>
+ <div class="section-head"><div><div class="kicker">10 — wall of love</div><h2>Notes from people<br>who <em>adore you.</em></h2></div><p>A few words pinned to the sky, from the people who are lucky to have you.</p></div>
  <div class="wall">
   <article class="note" style="--r:-2deg"><p>“You make every room feel warmer just by walking in. Never change.”</p><b>— a friend who adores you</b></article>
   <article class="note" style="--r:1.5deg"><p>“Your laugh is my favorite sound. Thank you for sharing it so generously.”</p><b>— your biggest fan</b></article>
@@ -195,14 +275,14 @@ footer{padding:25px;text-align:center;color:#777184;font-size:11px;border-top:1p
  </div>
 </section>
 <section class="section reveal" id="edits">
- <div class="section-head"><div><div class="kicker">09 — made by her</div><h2>Her edits,<br><em>on display.</em></h2></div><p>Talent like this deserves an audience. Take a peek at the world through her eyes — and her edits.</p></div>
+ <div class="section-head"><div><div class="kicker">11 — made by her</div><h2>Her edits,<br><em>on display.</em></h2></div><p>Talent like this deserves an audience. Take a peek at the world through her eyes — and her edits.</p></div>
  <div class="insta">
   <div class="insta-copy"><div class="kicker">find her on instagram</div><a class="handle" href="https://www.instagram.com/weiszhaw_/" target="_blank" rel="noopener">@weiszhaw_</a><p>Every edit carries a little piece of her creativity. Go see them all, leave a like, and tell her how good they are.</p><div class="hero-actions"><a class="primary" href="https://www.instagram.com/weiszhaw_/" target="_blank" rel="noopener">Open on Instagram <span>↗</span></a></div></div>
   <div class="insta-frame"><iframe src="https://www.instagram.com/weiszhaw_/embed" title="Kmila's edits on Instagram (@weiszhaw_)" loading="lazy" scrolling="no" allowtransparency="true"></iframe></div>
  </div>
 </section>
 <section class="final reveal" id="mensagem">
- <div class="kicker">10 — one last thing</div>
+ <div class="kicker">12 — one last thing</div>
  <h2>The best is<br>yet <em>to come.</em></h2>
  <p>Happy birthday, Kmila! May this be just the beginning of a beautiful new cycle. Thank you for existing and for being part of my life. With love, from someone who is always cheering for you. ♡</p>
  <button class="primary" id="surprise">Tap to open your surprise ✨</button>
@@ -281,7 +361,7 @@ const WISHES=[
  window.rain=function(n){if(reduce)return;n=n||140;for(let i=0;i<n;i++)parts.push(P(Math.random()*W,-20-Math.random()*H*.5,(Math.random()-.5)*3,2+Math.random()*3,{g:.07,d:.0025+Math.random()*.002}));go()};
  window.bigBurst=function(x,y){burst(x,y,70,11);rain(70)};
  document.addEventListener('click',e=>{
-  if(e.target.closest('#scratch'))return;
+  if(e.target.closest('#scratch,.board'))return;
   if(e.target.closest('.visual,.story-art')){bigBurst(e.clientX,e.clientY);return}
   burst(e.clientX,e.clientY,9,4)
  });
@@ -343,6 +423,235 @@ const WISHES=[
   wo.classList.remove('on');cr.classList.remove('shake');void cr.offsetWidth;cr.classList.add('shake');
   setTimeout(()=>{wo.textContent='“'+WISHES[i]+'”';wo.classList.add('on');const r=cr.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,18,6)},650)}
  document.getElementById('pull').addEventListener('click',pull);cr.addEventListener('click',e=>{e.stopPropagation();pull()});cr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pull()}});
+})();
+</script>
+<script>
+/* ===== CHESS — full rules (castling, en passant, promotion, check/mate/draws) + computer opponent ===== */
+(function(){
+ const boardEl=document.getElementById('cBoard');if(!boardEl)return;
+ const $=id=>document.getElementById(id);
+ const GL={K:'♚',Q:'♛',R:'♜',B:'♝',N:'♞',P:'♟'};
+ const VAL={P:100,N:320,B:330,R:500,Q:900,K:0};
+ const PST={
+  P:[0,0,0,0,0,0,0,0,50,50,50,50,50,50,50,50,10,10,20,30,30,20,10,10,5,5,10,25,25,10,5,5,0,0,0,20,20,0,0,0,5,-5,-10,0,0,-10,-5,5,5,10,10,-20,-20,10,10,5,0,0,0,0,0,0,0,0],
+  N:[-50,-40,-30,-30,-30,-30,-40,-50,-40,-20,0,0,0,0,-20,-40,-30,0,10,15,15,10,0,-30,-30,5,15,20,20,15,5,-30,-30,0,15,20,20,15,0,-30,-30,5,10,15,15,10,5,-30,-40,-20,0,5,5,0,-20,-40,-50,-40,-30,-30,-30,-30,-40,-50],
+  B:[-20,-10,-10,-10,-10,-10,-10,-20,-10,0,0,0,0,0,0,-10,-10,0,5,10,10,5,0,-10,-10,5,5,10,10,5,5,-10,-10,0,10,10,10,10,0,-10,-10,10,10,10,10,10,10,-10,-10,5,0,0,0,0,5,-10,-20,-10,-10,-10,-10,-10,-10,-20],
+  R:[0,0,0,0,0,0,0,0,5,10,10,10,10,10,10,5,-5,0,0,0,0,0,0,-5,-5,0,0,0,0,0,0,-5,-5,0,0,0,0,0,0,-5,-5,0,0,0,0,0,0,-5,-5,0,0,0,0,0,0,-5,0,0,0,5,5,0,0,0],
+  Q:[-20,-10,-10,-5,-5,-10,-10,-20,-10,0,0,0,0,0,0,-10,-10,0,5,5,5,5,0,-10,-5,0,5,5,5,5,0,-5,0,0,5,5,5,5,0,-5,-10,5,5,5,5,5,0,-10,-10,0,5,0,0,0,0,-10,-20,-10,-10,-5,-5,-10,-10,-20],
+  K:[-30,-40,-40,-50,-50,-40,-40,-30,-30,-40,-40,-50,-50,-40,-40,-30,-30,-40,-40,-50,-50,-40,-40,-30,-30,-40,-40,-50,-50,-40,-40,-30,-20,-30,-30,-40,-40,-30,-30,-20,-10,-20,-20,-20,-20,-20,-20,-10,20,20,0,0,0,0,20,20,20,30,10,0,0,10,30,20]
+ };
+ const FILES='abcdefgh';
+ const N8=[[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]];
+ const K8=[[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+ const DIAG=[[-1,-1],[-1,1],[1,-1],[1,1]],ORTH=[[-1,0],[1,0],[0,-1],[0,1]];
+ const sqName=i=>FILES[i&7]+(8-(i>>3));
+ const inb=(r,c)=>r>=0&&r<8&&c>=0&&c<8;
+
+ function initState(){const b=Array(64).fill(null),back='RNBQKBNR';for(let c=0;c<8;c++){b[c]='b'+back[c];b[8+c]='bP';b[48+c]='wP';b[56+c]='w'+back[c]}return{b,t:'w',c:{wK:1,wQ:1,bK:1,bQ:1},ep:-1}}
+ function fromFEN(f){const p=f.split(' '),b=[];for(const ch of p[0]){if(ch==='/')continue;if(/\d/.test(ch)){for(let i=0;i<+ch;i++)b.push(null)}else b.push((ch===ch.toUpperCase()?'w':'b')+ch.toUpperCase())}
+  const cs=p[2]||'-';return{b,t:p[1]||'w',c:{wK:cs.includes('K')?1:0,wQ:cs.includes('Q')?1:0,bK:cs.includes('k')?1:0,bQ:cs.includes('q')?1:0},ep:p[3]&&p[3]!=='-'?(8-(+p[3][1]))*8+FILES.indexOf(p[3][0]):-1}}
+
+ function attacked(b,sq,by){
+  const r=sq>>3,c=sq&7,pr=by==='w'?r+1:r-1;
+  if(pr>=0&&pr<8)for(const dc of[-1,1]){const cc=c+dc;if(cc>=0&&cc<8&&b[pr*8+cc]===by+'P')return true}
+  for(const[dr,dc]of N8){const rr=r+dr,cc=c+dc;if(inb(rr,cc)&&b[rr*8+cc]===by+'N')return true}
+  for(const[dr,dc]of K8){const rr=r+dr,cc=c+dc;if(inb(rr,cc)&&b[rr*8+cc]===by+'K')return true}
+  for(const[dr,dc]of DIAG){let rr=r+dr,cc=c+dc;while(inb(rr,cc)){const p=b[rr*8+cc];if(p){if(p[0]===by&&(p[1]==='B'||p[1]==='Q'))return true;break}rr+=dr;cc+=dc}}
+  for(const[dr,dc]of ORTH){let rr=r+dr,cc=c+dc;while(inb(rr,cc)){const p=b[rr*8+cc];if(p){if(p[0]===by&&(p[1]==='R'||p[1]==='Q'))return true;break}rr+=dr;cc+=dc}}
+  return false}
+
+ function pseudo(S){
+  const b=S.b,t=S.t,o=t==='w'?'b':'w',out=[];
+  const push=(from,to,x)=>out.push(Object.assign({from,to},x));
+  for(let i=0;i<64;i++){const p=b[i];if(!p||p[0]!==t)continue;const k=p[1],r=i>>3,c=i&7;
+   if(k==='P'){
+    const d=t==='w'?-1:1,start=t==='w'?6:1,last=t==='w'?0:7,r1=r+d;
+    const addP=(to,x)=>{if((to>>3)===last){for(const q of'QRBN')push(i,to,Object.assign({promo:q},x))}else push(i,to,x)};
+    if(r1>=0&&r1<8){
+     if(!b[r1*8+c]){addP(r1*8+c);if(r===start&&!b[(r+2*d)*8+c])push(i,(r+2*d)*8+c,{dbl:1})}
+     for(const dc of[-1,1]){const cc=c+dc;if(cc<0||cc>7)continue;const to=r1*8+cc;
+      if(b[to]&&b[to][0]===o)addP(to);else if(!b[to]&&to===S.ep)push(i,to,{ep:1})}
+    }
+   }else if(k==='N'||k==='K'){
+    for(const[dr,dc]of(k==='N'?N8:K8)){const rr=r+dr,cc=c+dc;if(!inb(rr,cc))continue;const to=rr*8+cc;if(!b[to]||b[to][0]===o)push(i,to)}
+    if(k==='K'){
+     if(t==='w'&&i===60&&!attacked(b,60,o)){
+      if(S.c.wK&&!b[61]&&!b[62]&&b[63]==='wR'&&!attacked(b,61,o)&&!attacked(b,62,o))push(60,62,{castle:'K'});
+      if(S.c.wQ&&!b[59]&&!b[58]&&!b[57]&&b[56]==='wR'&&!attacked(b,59,o)&&!attacked(b,58,o))push(60,58,{castle:'Q'});
+     }
+     if(t==='b'&&i===4&&!attacked(b,4,o)){
+      if(S.c.bK&&!b[5]&&!b[6]&&b[7]==='bR'&&!attacked(b,5,o)&&!attacked(b,6,o))push(4,6,{castle:'K'});
+      if(S.c.bQ&&!b[3]&&!b[2]&&!b[1]&&b[0]==='bR'&&!attacked(b,3,o)&&!attacked(b,2,o))push(4,2,{castle:'Q'});
+     }
+    }
+   }else{
+    const dirs=k==='B'?DIAG:k==='R'?ORTH:DIAG.concat(ORTH);
+    for(const[dr,dc]of dirs){let rr=r+dr,cc=c+dc;while(inb(rr,cc)){const to=rr*8+cc,q=b[to];if(!q)push(i,to);else{if(q[0]===o)push(i,to);break}rr+=dr;cc+=dc}}
+   }
+  }
+  return out}
+
+ function make(S,m){
+  const b=S.b.slice(),t=S.t,p=b[m.from];
+  b[m.to]=m.promo?t+m.promo:p;b[m.from]=null;
+  if(m.ep)b[m.to+(t==='w'?8:-8)]=null;
+  if(m.castle){if(t==='w'){if(m.castle==='K'){b[61]=b[63];b[63]=null}else{b[59]=b[56];b[56]=null}}else{if(m.castle==='K'){b[5]=b[7];b[7]=null}else{b[3]=b[0];b[0]=null}}}
+  const c=Object.assign({},S.c);
+  if(p[1]==='K'){if(t==='w'){c.wK=0;c.wQ=0}else{c.bK=0;c.bQ=0}}
+  if(m.from===63||m.to===63)c.wK=0;if(m.from===56||m.to===56)c.wQ=0;
+  if(m.from===7||m.to===7)c.bK=0;if(m.from===0||m.to===0)c.bQ=0;
+  return{b,t:t==='w'?'b':'w',c,ep:m.dbl?(m.from+m.to)/2:-1}}
+ const kingSq=(b,t)=>b.indexOf(t+'K');
+ function legal(S){const o=S.t==='w'?'b':'w';return pseudo(S).filter(m=>{const n=make(S,m);return!attacked(n.b,kingSq(n.b,S.t),o)})}
+ const inCheck=(S,t)=>attacked(S.b,kingSq(S.b,t),t==='w'?'b':'w');
+
+ function san(S,m,ms){
+  const p=S.b[m.from],k=p[1];let s;
+  if(m.castle)s=m.castle==='K'?'O-O':'O-O-O';
+  else{const cap=S.b[m.to]||m.ep;
+   if(k==='P')s=(cap?FILES[m.from&7]+'x':'')+sqName(m.to)+(m.promo?'='+m.promo:'');
+   else{let dis='';const others=ms.filter(x=>x.from!==m.from&&S.b[x.from]===p&&x.to===m.to);
+    if(others.length){const sf=others.some(x=>(x.from&7)===(m.from&7)),sr=others.some(x=>(x.from>>3)===(m.from>>3));dis=!sf?FILES[m.from&7]:!sr?String(8-(m.from>>3)):sqName(m.from)}
+    s=k+dis+(cap?'x':'')+sqName(m.to)}}
+  const n=make(S,m);if(inCheck(n,n.t))s+=legal(n).length?'+':'#';
+  return s}
+
+ /* ---- AI ---- */
+ function evaluate(b){let s=0;for(let i=0;i<64;i++){const p=b[i];if(!p)continue;const k=p[1];
+  if(p[0]==='w')s+=VAL[k]+PST[k][i];else s-=VAL[k]+PST[k][(7-(i>>3))*8+(i&7)]}return s}
+ let nodes=0,deadline=0;const TO={};
+ const tick=()=>{if((++nodes&255)===0&&deadline&&performance.now()>deadline)throw TO};
+ function order(S,ms){return ms.map(m=>{let s=0;const v=S.b[m.to];if(v)s+=10*VAL[v[1]]-VAL[S.b[m.from][1]];else if(m.ep)s+=900;if(m.promo)s+=VAL[m.promo];return[s,m]}).sort((a,b)=>b[0]-a[0]).map(x=>x[1])}
+ function quiesce(S,a,b,qd,ms){tick();ms=ms||legal(S);
+  if(!ms.length)return inCheck(S,S.t)?-100000:0;
+  const stand=(S.t==='w'?1:-1)*evaluate(S.b);
+  if(stand>=b)return b;if(stand>a)a=stand;if(qd<=0)return a;
+  for(const m of order(S,ms.filter(m=>S.b[m.to]||m.ep||m.promo))){const sc=-quiesce(make(S,m),-b,-a,qd-1);if(sc>=b)return b;if(sc>a)a=sc}
+  return a}
+ function search(S,d,a,b){tick();const ms=legal(S);
+  if(!ms.length)return inCheck(S,S.t)?-100000-d:0;
+  if(d<=0)return quiesce(S,a,b,4,ms);
+  for(const m of order(S,ms)){const sc=-search(make(S,m),d-1,-b,-a);if(sc>=b)return b;if(sc>a)a=sc}
+  return a}
+ function pickMove(S,level,ms,ms_time){
+  ms=ms||legal(S);if(!ms.length)return null;
+  const me=S.t==='w'?1:-1;
+  if(level===0){let best=ms[0],bs=-1e12;
+   for(const m of ms){const n=make(S,m);let sc=me*evaluate(n.b)+Math.random()*420-210;
+    if(inCheck(n,n.t)&&!legal(n).length)sc+=1e6;if(sc>bs){bs=sc;best=m}}
+   return best}
+  let ordered=order(S,ms),best=ordered[0];
+  nodes=0;deadline=performance.now()+(ms_time||(level===1?900:1500));
+  const maxD=level===1?3:7,noise=level===1?18:0;
+  try{for(let d=1;d<=maxD;d++){let bs=-1e9,bm=null;const scores=[];
+    for(const m of ordered){const sc=-search(make(S,m),d-1,-1e9,-bs)+(noise?Math.random()*noise:0);scores.push([sc,m]);if(sc>bs){bs=sc;bm=m}}
+    best=bm;ordered=scores.sort((x,y)=>y[0]-x[0]).map(x=>x[1]);if(bs>90000)break}
+  }catch(e){if(e!==TO)throw e}
+  deadline=0;return best}
+
+ /* ---- game state ---- */
+ const G={stack:[initState()],log:[],pc:'w',level:1,flip:false,sel:null,targets:[],last:null,promo:null,hintM:null,thinking:false,over:false,msg:'',id:0};
+ const cur=()=>G.stack[G.stack.length-1];
+ const key=S=>S.b.map(x=>x||'-').join('')+S.t+S.c.wK+S.c.wQ+S.c.bK+S.c.bQ+S.ep;
+ function insufficient(b){const ps=b.filter(p=>p&&p[1]!=='K');return ps.length===0||(ps.length===1&&(ps[0][1]==='B'||ps[0][1]==='N'))}
+ function halfClock(){let n=0;for(let i=G.log.length-1;i>=0&&!G.log[i].reset;i--)n++;return n}
+ function reps(){const k=key(cur());return G.stack.filter(s=>key(s)===k).length}
+
+ function evalStatus(){
+  const S=cur(),ms=legal(S),chk=inCheck(S,S.t);G.over=true;
+  if(!ms.length){G.msg=chk?(S.t===G.pc?'Checkmate — the stars win this one. Rematch? ✦':'Checkmate — you win! ✨'):'Stalemate — a draw. Nobody wins, nobody loses.';
+   if(chk&&S.t!==G.pc&&window.bigBurst){const r=boardEl.getBoundingClientRect();setTimeout(()=>window.bigBurst(r.left+r.width/2,r.top+r.height/3),250)}return}
+  if(insufficient(S.b)){G.msg='Draw — not enough pieces left to checkmate.';return}
+  if(halfClock()>=100){G.msg='Draw — fifty moves without progress.';return}
+  if(reps()>=3){G.msg='Draw — the same position three times.';return}
+  G.over=false;
+  if(G.thinking)G.msg='The stars are thinking…';
+  else G.msg=(S.t===G.pc?'Your move':'Their move')+(chk?' — check!':' ✦')}
+
+ function apply(m){
+  const S=cur(),ms=legal(S),sn=san(S,m,ms),reset=S.b[m.from][1]==='P'||!!S.b[m.to]||!!m.ep;
+  G.stack.push(make(S,m));G.log.push({m,san:sn,reset,by:S.t});G.last=m;G.sel=null;G.targets=[];G.hintM=null;G.promo=null;evalStatus()}
+
+ function aiTurn(){
+  if(G.over||cur().t===G.pc)return;
+  const id=G.id;G.thinking=true;evalStatus();render();
+  setTimeout(()=>{if(id!==G.id)return;const m=pickMove(cur(),G.level);G.thinking=false;if(m)apply(m);else evalStatus();render()},70)}
+
+ function clickSq(i){
+  if(G.over||G.thinking||G.promo||cur().t!==G.pc)return;
+  const S=cur(),p=S.b[i];G.hintM=null;
+  if(G.sel!=null){const cand=G.targets.filter(m=>m.to===i);
+   if(cand.length){if(cand[0].promo){G.promo=cand;render();return}apply(cand[0]);render();aiTurn();return}}
+  if(p&&p[0]===G.pc){G.sel=i;G.targets=legal(S).filter(m=>m.from===i)}else{G.sel=null;G.targets=[]}
+  render()}
+
+ function newGame(){G.id++;G.stack=[initState()];G.log=[];G.sel=null;G.targets=[];G.last=null;G.promo=null;G.hintM=null;G.thinking=false;G.over=false;G.flip=G.pc==='b';evalStatus();render();aiTurn()}
+
+ /* ---- render ---- */
+ const INIT={P:8,N:2,B:2,R:2,Q:1};
+ function captured(){const have={w:{},b:{}};for(const p of cur().b)if(p&&p[1]!=='K')have[p[0]][p[1]]=(have[p[0]][p[1]]||0)+1;
+  const lost={w:[],b:[]};let mat={w:0,b:0};
+  for(const c of['w','b'])for(const k of'QRBNP'){const n=INIT[k]-(have[c][k]||0);for(let i=0;i<n;i++)lost[c].push(k);}
+  for(const p of cur().b)if(p&&p[1]!=='K')mat[p[0]]+=VAL[p[1]]/100;
+  return{lost,diff:mat.w-mat.b}}
+ function capHtml(color,diffForMe){const {lost}=captured();const arr=lost[color];
+  return(arr.length?arr.map(k=>`<span class="${color}">${GL[k]}&#xFE0E;</span>`).join(''):'<em>nothing yet</em>')+(diffForMe>0?`<small>+${diffForMe}</small>`:'')}
+ function render(){
+  const S=cur(),b=S.b,chk=inCheck(S,S.t)?kingSq(b,S.t):-1;
+  const idx=[...Array(64).keys()];if(G.flip)idx.reverse();
+  let h='';
+  for(const i of idx){const r=i>>3,c=i&7,dark=(r+c)%2===1;let cls='sq '+(dark?'d':'l');
+   if(G.sel===i)cls+=' sel';else if(G.last&&(G.last.from===i||G.last.to===i))cls+=' last';
+   if(G.hintM&&(G.hintM.from===i||G.hintM.to===i))cls+=' hnt';
+   if(i===chk)cls+=' chk';
+   const tg=G.targets.find(m=>m.to===i);if(tg)cls+=(b[i]||tg.ep)?' cap':' mv';
+   const vr=G.flip?7-r:r,vc=G.flip?7-c:c,p=b[i];
+   h+=`<div class="${cls}" data-i="${i}" role="button" aria-label="${sqName(i)}${p?' '+(p[0]==='w'?'white ':'black ')+{K:'king',Q:'queen',R:'rook',B:'bishop',N:'knight',P:'pawn'}[p[1]]:''}">${p?`<span class="pc ${p[0]}">${GL[p[1]]}&#xFE0E;</span>`:''}${vc===0?`<i class="rk">${8-r}</i>`:''}${vr===7?`<i class="fl">${FILES[c]}</i>`:''}</div>`}
+  if(G.promo){h+='<div class="promo"><p>Promote to…</p>'+['Q','R','B','N'].map(q=>`<button data-q="${q}" aria-label="${q}"><span class="pc ${G.pc}">${GL[q]}&#xFE0E;</span></button>`).join('')+'</div>'}
+  boardEl.innerHTML=h;
+  $('cStatus').textContent=G.msg;
+  const {diff}=captured(),mine=G.pc==='w'?diff:-diff;
+  const opp=G.pc==='w'?'b':'w';
+  $('cCapMine').innerHTML=capHtml(opp,mine>0?mine:0);
+  $('cCapTheirs').innerHTML=capHtml(G.pc,mine<0?-mine:0);
+  let mh='';for(let i=0;i<G.log.length;i+=2){mh+=`<span><b>${i/2+1}.</b>${G.log[i].san}${G.log[i+1]?' '+G.log[i+1].san:''}</span>`}
+  const ml=$('cMoves');ml.innerHTML=mh||'<em style="color:#8d85a0">The first move is yours to make.</em>';ml.scrollTop=ml.scrollHeight;
+  $('cUndo').disabled=G.thinking||G.log.length<=(G.pc==='b'?1:0);
+  $('cHint').disabled=G.thinking||G.over||cur().t!==G.pc;
+  document.querySelectorAll('#cLevel button').forEach(x=>x.classList.toggle('on',+x.dataset.lv===G.level));
+  document.querySelectorAll('#cSide button').forEach(x=>x.classList.toggle('on',x.dataset.side===G.pc))}
+
+ boardEl.addEventListener('click',e=>{
+  e.stopPropagation();
+  const q=e.target.closest('.promo button');
+  if(q){const m=G.promo&&G.promo.find(x=>x.promo===q.dataset.q);if(m){apply(m);render();aiTurn()}return}
+  if(G.promo){G.promo=null;render();return}
+  const s=e.target.closest('.sq');if(s)clickSq(+s.dataset.i)});
+ $('cNew').addEventListener('click',newGame);
+ $('cFlip').addEventListener('click',()=>{G.flip=!G.flip;render()});
+ $('cUndo').addEventListener('click',()=>{if(G.thinking||!G.log.length)return;
+  do{G.stack.pop();G.log.pop()}while(G.log.length&&cur().t!==G.pc);
+  G.last=G.log.length?G.log[G.log.length-1].m:null;G.sel=null;G.targets=[];G.hintM=null;G.promo=null;G.over=false;evalStatus();render();aiTurn()});
+ $('cHint').addEventListener('click',()=>{if(G.thinking||G.over||cur().t!==G.pc)return;
+  G.sel=null;G.targets=[];G.hintM=pickMove(cur(),2,null,700);G.msg='A little hint — glowing gold ✦';render()});
+ document.querySelectorAll('#cLevel button').forEach(btn=>btn.addEventListener('click',()=>{G.level=+btn.dataset.lv;render()}));
+ document.querySelectorAll('#cSide button').forEach(btn=>btn.addEventListener('click',()=>{if(G.pc===btn.dataset.side)return;G.pc=btn.dataset.side;newGame()}));
+
+ window.KmilaChess={initState,fromFEN,legal,make,pickMove,inCheck,G,render,evalStatus};
+ evalStatus();render();
+})();
+
+/* ===== MUSES — fixed local portraits ===== */
+(function(){
+ const figs=document.querySelectorAll('.polaroid');
+ figs.forEach(fig=>{
+  const img=fig.querySelector('img');
+  if(!img)return;
+  const markLoaded=()=>fig.classList.add('has');
+  const markFailed=()=>fig.classList.remove('has');
+  if(img.complete && img.naturalWidth>0) markLoaded();
+  else { img.addEventListener('load',markLoaded,{once:true}); img.addEventListener('error',markFailed,{once:true}); }
+ });
 })();
 </script>
 </body></html>
