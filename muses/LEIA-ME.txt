@@ -1,0 +1,15 @@
+COLOQUE AQUI AS FOTOS DO MURAL ("A wall of inspiration").
+
+Salve cada foto com EXATAMENTE estes nomes (formato .jpg):
+  katie-mcgrath.jpg
+  jessica-capshaw.jpg
+  rachel-weisz.jpg
+  peggy-carter.jpg
+  bridget-regan.jpg
+
+Dica: abra o link "find on pinterest" de cada moldura no site, escolha uma foto
+que ela goste, salve a imagem e renomeie com o nome acima.
+
+Alternativa sem mexer em arquivo: no site, toque numa moldura vazia e escolha
+uma foto do aparelho. Ela fica salva so naquele navegador/aparelho.
+Frame sem foto continua aparecendo bonitinho, com o convite "pin a photo".
