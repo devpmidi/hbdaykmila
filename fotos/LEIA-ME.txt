@@ -1,0 +1,6 @@
+COLOQUE AS FOTOS DA KMILA AQUI.
+Depois, no index.html, procure a seção "Uma galeria de boas lembranças".
+Em cada bloco .photo, você pode substituir o conteúdo placeholder por:
+<img src="fotos/kmila-01.jpg" alt="Descrição da foto">
+Use estes nomes sugeridos: kmila-01.jpg, kmila-02.jpg, kmila-03.jpg e kmila-04.jpg.
+Mantenha as fotos dentro desta pasta para o site encontrar os arquivos.
